@@ -1,7 +1,9 @@
+import Navigation from "./routes/Navigation";
+
 function App() {
   return (
     <div className="App">
-      <h1>PokeApi</h1>
+      <Navigation />
     </div>
   );
 }
