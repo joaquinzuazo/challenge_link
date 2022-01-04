@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { getPoke } from '../../api/pokeApi'
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, makeStyles, TextField, Grid, Button } from '@material-ui/core'
+import { TableContainer, 
+    Table,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    makeStyles,
+    TextField,
+    Grid,
+    Button,
+    CircularProgress
+    } from '@material-ui/core'
 import LinkIcon from '@material-ui/icons/Link';
 
 const useStyles = makeStyles({
@@ -50,11 +61,14 @@ export default function Pokemons() {
 
     const getPokemons=async(url)=>{
         setLoading(true)
-        const response=await getPoke(url)
-        setPokemons(response.data.results)
-        setNext(response.data.next)
-        setPrevious(response.data.previous)
-        setLoading(false)
+        setTimeout(async() => {
+            const response=await getPoke(url)
+            setPokemons(response.data.results)
+            setNext(response.data.next)
+            setPrevious(response.data.previous)
+            setLoading(false)
+        }, 1000);
+
 
     }
 
@@ -62,7 +76,9 @@ export default function Pokemons() {
         <div>
             {loading ? 
             (
-                <p>Cargando</p>
+            <div className={classes.divContainer}>
+                <CircularProgress />
+            </div>
             ) 
             :
             (
