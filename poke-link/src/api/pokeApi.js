@@ -1,8 +1,7 @@
 const axios = require('axios');
 
-export async function getPoke() {
+export async function getPoke(url) {
     try {
-        const url='https://pokeapi.co/api/v2/pokemon/?limit=50'
         const response = await axios.get(url);
         return response
     } catch (error) {

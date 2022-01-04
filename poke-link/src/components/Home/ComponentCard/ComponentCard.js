@@ -1,26 +1,41 @@
 import React from 'react'
+import { Container, Typography, Grid, Button, makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+
+
+const useStyle=makeStyles({
+  card:{
+    marginTop:'15%',
+  },
+})
+
 
 export default function ComponentCard(props) {
 
-  const { title, home } = props
+  const { title, subtitle, home } = props
+  const classes=useStyle()
 
   return (
-      <Card sx={{ maxWidth: 500 }}>
-          <CardContent>
-              <Typography sx={{ fontSize: 34 }} color="text.secondary" gutterBottom align='center'>
-                {title}
-              </Typography>
-          </CardContent>
-          {home && <CardActions>
-              <Button component={Link} to={'/'} size="small">Volver</Button>
-          </CardActions>
-          }
-      </Card>
+    <div className={classes.card}>
+      <Container maxWidth="sm">
+        <Typography variant='h2' align='center' color='textPrimary' gutterBottom>
+          {title}
+        </Typography>
+        <Typography variant='h5' align='center' color='textSecondary' paragraph>
+          {subtitle}
+        </Typography>
+        {home &&
+        <div>
+          <Grid container spacing={1} justify='center'>
+            <Grid item>
+              <Button variant='contained' color='primary' component={Link} to={'/'} >
+                Home
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
+        }
+      </Container>
+    </div>
   )
 }

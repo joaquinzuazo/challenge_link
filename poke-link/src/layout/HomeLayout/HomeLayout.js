@@ -1,6 +1,5 @@
 import React from 'react'
 import TopMenu from '../../components/Home/TopMenu/TopMenu'
-import './HomeLayout.scss'
 
 export default function HomeLayout(props) {
 
