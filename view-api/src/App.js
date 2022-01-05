@@ -1,10 +1,13 @@
 import React from "react";
 import Navigations from "./routes/Navigations";
+import { AuthProvider } from './/context/AuthContext'
 
 function App() {
   return (
     <div className="App">
-      <Navigations />
+      <AuthProvider>
+        <Navigations />
+      </AuthProvider>
     </div>
   );
 }
