@@ -42,6 +42,7 @@ export default function Pokemons() {
     const classes = useStyles();
 
     const [pokemons, setPokemons]=useState([])
+    const [pokemonsAux, setPokemonsAux]=useState([])
     const [next, setNext]=useState(null)
     const [previous, setPrevious]=useState(null)
     const [loading, setLoading]=useState(true)
@@ -55,7 +56,7 @@ export default function Pokemons() {
             const result=pokemons.filter(pokemon=>pokemon.name.indexOf(e.target.value)!==-1)
             setPokemons(result)
         } else {
-            getPokemons('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10')
+            setPokemons(pokemonsAux)
         }
     }
 
@@ -64,6 +65,7 @@ export default function Pokemons() {
         setTimeout(async() => {
             const response=await getPoke(url)
             setPokemons(response.data.results)
+            setPokemonsAux(response.data.results)
             setNext(response.data.next)
             setPrevious(response.data.previous)
             setLoading(false)
